@@ -14,6 +14,8 @@ import torch.nn.functional as F
 from timm import create_model
 from timm.models.layers import trunc_normal_, DropPath
 from timm.models.registry import register_model
+from torch.hub import load_state_dict_from_url
+
 
 class Block(nn.Module):
     r""" ConvNeXt Block. There are two equivalent implementations:
@@ -768,76 +770,150 @@ model_urls = {
 #     return model
 
 
+
 @register_model
-def convnext_tiny_up2_attn_hmp(pretrained=False, in_22k=False, **kwargs):
+def convnext_tiny_ADNet_IN1K(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg', None)
     kwargs.pop('pretrained_cfg_overlay', None)
-    return ConvNeXt(
+    model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
         num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
 
 
-# medical datasets
 @register_model
-def convnext_tiny_up2_attn_hmp_crop15(pretrained=False, in_22k=False, **kwargs):
+def convnext_tiny_ADNet_IN1K_NIH(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg', None)
     kwargs.pop('pretrained_cfg_overlay', None)
-    return ConvNeXt(
+    model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
         num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K_NIH.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
 
 
 @register_model
-def convnext_tiny_up2_attn_hmp_crop23(pretrained=False, in_22k=False, **kwargs):
+def convnext_tiny_ADNet_IN1K_MIMIC(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg', None)
     kwargs.pop('pretrained_cfg_overlay', None)
-    return ConvNeXt(
-        depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
-        up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=23,
-        mlp=4, groups=1, dw=True,
-    )
-
-@register_model
-def convnext_tiny_up2_attn_hmp_crop15_aug(pretrained=False, in_22k=False, **kwargs):
-    kwargs.pop('pretrained_cfg', None)
-    kwargs.pop('pretrained_cfg_overlay', None)
-    return ConvNeXt(
+    model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
         num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K_MIMIC.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
 
 
 @register_model
-def convnext_tiny_up2_attn_hmp_crop15_aug_all(pretrained=False, in_22k=False, **kwargs):
+def convnext_tiny_ADNet_IN1K_CheXpert(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg', None)
     kwargs.pop('pretrained_cfg_overlay', None)
-    return ConvNeXt(
+    model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
         num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K_CheXpert.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
 
 
 @register_model
-def convnext_tiny_up2_attn_hmp_crop23_aug(pretrained=False, in_22k=False, **kwargs):
+def convnext_tiny_ADNet_ALL(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg', None)
     kwargs.pop('pretrained_cfg_overlay', None)
-    return ConvNeXt(
+    model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
         num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
-        up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=23,
+        up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
+
+@register_model
+def convnext_tiny_ADNet_ALL_NIH(pretrained=False, in_22k=False, **kwargs):
+    kwargs.pop('pretrained_cfg', None)
+    kwargs.pop('pretrained_cfg_overlay', None)
+    model = ConvNeXt(
+        depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
+        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
+        mlp=4, groups=1, dw=True,
+    )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL_NIH.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
+
+@register_model
+def convnext_tiny_ADNet_ALL_MIMIC(pretrained=False, in_22k=False, **kwargs):
+    kwargs.pop('pretrained_cfg', None)
+    kwargs.pop('pretrained_cfg_overlay', None)
+    model = ConvNeXt(
+        depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
+        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
+        mlp=4, groups=1, dw=True,
+    )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL_MIMIC.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
+
+@register_model
+def convnext_tiny_ADNet_ALL_CheXpert(pretrained=False, in_22k=False, **kwargs):
+    kwargs.pop('pretrained_cfg', None)
+    kwargs.pop('pretrained_cfg_overlay', None)
+    model = ConvNeXt(
+        depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
+        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
+        mlp=4, groups=1, dw=True,
+    )
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL_CheXpert.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
 
 
 if __name__ == '__main__':

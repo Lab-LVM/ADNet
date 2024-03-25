@@ -3,4 +3,4 @@ windows:
   - window_name: nih-convnext
     layout: even-vertical
     panes:
-        - python3 train.py -s nihchest -c 0 --use-wandb -m convnext_tiny_ADNet_IN1K
+        - python3 train.py -s nihchest -c 0 --use-wandb -m resnet50_ADNet_IN1K

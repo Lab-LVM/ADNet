@@ -3,14 +3,5 @@ windows:
   - window_name: cxp-convnext
     layout: even-vertical
     panes:
-#      # train
-#      - shell_command:
-#          - python3 train.py -s chexpert_v13 -c 0 --use-wandb
-#            -m convnext_tiny
-#      - shell_command:
-#          - python3 train.py -s chexpert_v13 -c 1 --use-wandb
-#            -m convnext_tiny_up2_attn_hmp_crop15_aug convnext_tiny_up2_attn_hmp_crop23_aug
-      # valid
       - shell_command:
-          - python valid.py -s chexpert_v1 -c 0 -b 128 -m convnext_tiny
-#          - python valid.py -s chexpert_v1 -c 0 -b 128 -m convnext_tiny_up2_attn_hmp_crop15_aug
+          - python3 train.py -s chexpert -c 1 --use-wandb -m convnext_tiny_ADNet_IN1K

@@ -14,8 +14,11 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
 
 1. Copy [mecla/model/convnext.py](mecla/model/convnext.py) into your project root folder.
 
-2. Install `timm==0.6.2` and run the following code snippets.
+2. Install `timm==0.6.2` and run the following code snippets. We provide the following models with checkpoints.
 
+   - Model Name patterns: `[resnet50|convnext_tiny]_ADNet_[Dataset Name]`
+   - Dataset Name: `IN1K`, `IN1K_NIH`, `IN1K_MIMIC`, `IN1K_CheXpert`, `ALL`, `ALL_NIH`, `ALL_MIMIC`, `ALL_CheXpert`.
+   
    ```python
    !wget https://raw.githubusercontent.com/Lab-LVM/ADNet/main/mecla/model/convnext.py
    !wget https://raw.githubusercontent.com/Lab-LVM/ADNet/main/misc/sample.jpg
@@ -29,7 +32,7 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
        Resize(438, 3), CenterCrop(416), ToTensor(), 
        Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
    ])(img)
-   model = create_model('ResNet50_ADNet_ALL_NIH', pretrained=True)
+   model = create_model('resnet50_ADNet_ALL_NIH', pretrained=True) 
    y = model(x.unsqueeze(0))
    print(y)
    # output: (...)
@@ -90,12 +93,12 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
 
 3. Run the following command.
 
-   - Download a pre-trained checkpoint and modify the checkpoint path of `model_weight` in [config/train.json](config/train.json). You can choose a checkpoint depending on pre-trained dataset types: ImageNet or NIH+MIMIC+CheXpert.
+   - Download a pre-trained checkpoint and modify the checkpoint path of `model_weight` in [config/train.json](config/train.json). You can choose a checkpoint depending on pre-trained dataset types: ImageNet or ALL (NIH+MIMIC+CheXpert).
    
      | No   | Backbone   | ImageNet | NIH+MIMIC+CheXpert |
      | ---- | ---------- | -------- | ------------------ |
-     | 1    | ResNet50   |          |                    |
-     | 2    | ConvNeXt-T |          |                    |
+     | 1    | ResNet50   | [ckpt]() | [ckpt]()           |
+     | 2    | ConvNeXt-T | [ckpt]() | [ckpt]()           |
    
    - See more training scripts in [script/supervised/](script/supervised).
    
@@ -105,7 +108,7 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
    
    ```bash
    # pattern: python3 train.py -c [GPU Device] -s [Setting Name] -m [Model Name]
-   python3 train.py -s nihchest_v13 -c 1 -m convnext_tiny_up2_attn_hmp_crop15_aug
+   python3 train.py -s nihchest -c 1 -m convnext_tiny_ADNet_IN1K
    ```
    
    
@@ -116,21 +119,22 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
 
 We provide experiment results with pre-trained checkpoints.
 
-| Train Data         | Test Data | Model            | Image | AUROC | F1    | Recall | Download |
-| ------------------ | --------- | ---------------- | ----- | ----- | ----- | ------ | -------- |
-| NIH                | NIH       | ResNet50+ADNet   | 448   | 83.49 | 15.70 | 10.77  |          |
-| NIH                | NIH       | ConvNeXt-T+ADNet | 448   | 83.80 | 24.23 | 18.46  |          |
-| MIMIC              | MIMIC     | ResNet50+ADNet   | 256   | 84.48 | 31.85 | 26.84  |          |
-| MIMIC              | MIMIC     | ConvNeXt-T+ADNet | 416   | 85.31 | 31.37 | 26.97  |          |
-| CheXpert           | CheXpert  | ResNet50+ADNet   | 256   | 90.60 | -     | -      |          |
-| NIH+MIMIC+CheXpert | NIH       | ResNet50+ADNet   | 416   |       |       |        |          |
-| NIH+MIMIC+CheXpert | NIH       | ConvNeXt-T+ADNet | 416   |       |       |        |          |
-| NIH+MIMIC+CheXpert | MIMIC     | ResNet50+ADNet   | 416   |       |       |        |          |
-| NIH+MIMIC+CheXpert | MIMIC     | ConvNeXt-T+ADNet | 416   |       |       |        |          |
-| NIH+MIMIC+CheXpert | CheXpert  | ResNet50+ADNet   | 416   |       |       |        |          |
+| Pre-train Data | Fine-tune Data | Backbone   | Image | AUROC | F1    | Recall | Download |
+| -------------- | -------------- | ---------- | ----- | ----- | ----- | ------ | -------- |
+| IN1K           | NIH            | ResNet50   | 448   | 83.49 | 15.70 | 10.77  | [ckpt]() |
+| IN1K           | NIH            | ConvNeXt-T | 448   | 83.80 | 24.23 | 18.46  | [ckpt]() |
+| IN1K           | MIMIC          | ResNet50   | 256   | 84.48 | 31.85 | 26.84  | [ckpt]() |
+| IN1K           | MIMIC          | ConvNeXt-T | 416   | 85.31 | 31.37 | 26.97  | [ckpt]() |
+| IN1K           | CheXpert       | ResNet50   | 256   | 90.60 | -     | -      | [ckpt]() |
+| ALL            | NIH            | ResNet50   | 416   |       |       |        | [ckpt]() |
+| ALL            | NIH            | ConvNeXt-T | 416   |       |       |        | [ckpt]() |
+| ALL            | MIMIC          | ResNet50   | 416   |       |       |        | [ckpt]() |
+| ALL            | MIMIC          | ConvNeXt-T | 416   |       |       |        | [ckpt]() |
+| ALL            | CheXpert       | ResNet50   | 416   |       |       |        | [ckpt]() |
 
 *Note*
 
+- In the pre-train dataset column, ALL means a dataset combined by NIH, MIMIC, and CheXpert using [misc/combine_datasets.py](misc/combine_datasets.py).
 - We run our experiments on `Ubuntu 18.04 LTS`, `CUDA 11.03`, and a single NVIDIA RTX 3090 24GB GPU.
 
 

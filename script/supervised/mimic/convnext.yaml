@@ -3,23 +3,4 @@ windows:
   - window_name: mimic-convnext
     layout: even-vertical
     panes:
-#      # train
-#      - shell_command:
-#          - python3 train.py -s mimic_v2 -c 2 --use-wandb
-#            -m convnext_tiny
-#      - shell_command:
-#          - python3 train.py -s mimic_v2 --train-size 320 320 --test-size 320 320 -c 0 --use-wandb
-#            -m convnext_tiny_up2_attn_hmp_crop15_aug
-      # valid
-      - shell_command:
-          - python valid.py -s mimic_v1 -c 0 -b 128 --test-size 320 320 -m convnext_tiny
-          - python valid.py -s mimic_v1 -c 0 -b 128 --test-size 352 352 -m convnext_tiny
-          - python valid.py -s mimic_v1 -c 0 -b 128 --test-size 384 384 -m convnext_tiny
-          - python valid.py -s mimic_v1 -c 0 -b 128 --test-size 416 416 -m convnext_tiny
-          - python valid.py -s mimic_v1 -c 0 -b 128 --test-size 448 448 -m convnext_tiny
-      - shell_command:
-          - python valid.py -s mimic_v1 -c 1 -b 128 --test-size 320 320 -m convnext_tiny_up2_attn_hmp_crop15_aug
-          - python valid.py -s mimic_v1 -c 1 -b 128 --test-size 352 352 -m convnext_tiny_up2_attn_hmp_crop15_aug
-          - python valid.py -s mimic_v1 -c 1 -b 128 --test-size 384 384 -m convnext_tiny_up2_attn_hmp_crop15_aug
-          - python valid.py -s mimic_v1 -c 1 -b 128 --test-size 416 416 -m convnext_tiny_up2_attn_hmp_crop15_aug
-          - python valid.py -s mimic_v1 -c 1 -b 128 --test-size 448 448 -m convnext_tiny_up2_attn_hmp_crop15_aug
+        - python3 train.py -s mimic --train-size 320 320 --test-size 416 416 -c 0 --use-wandb -m convnext_tiny_ADNet_IN1K

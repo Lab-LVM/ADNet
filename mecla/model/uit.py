@@ -9,6 +9,7 @@ import torch.nn.functional as F
 from timm.models import ResNet, register_model
 from timm.models.layers import DropPath, trunc_normal_
 from timm.models.resnet import Bottleneck
+from torch.hub import load_state_dict_from_url
 
 
 class ConvBNAct(nn.Sequential):
@@ -615,354 +616,124 @@ class ResUNet(ResNet):
 
         return out
 
-########################
-# index
-# 1. t-conv - imagenet
-# 2. t-conv - nih
-# 3. gap - imagenet, nih, other
-# 4. hmt - imagenet
-# 5. hmt - nih, other
-# 6. dft - imagenet
-# 7. dft - nih
-# 8. vgg - imagenet
-# 9. vgg - nih
-########################
-
-# t-conv - imagenet
-@register_model
-def resnet50_up1_conv_hmp(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='conv',
-                   last_global_pool='hmp', crop_dim=8,
-                   num_classes=kwargs.get('num_classes', 1000))
 
 @register_model
-def resnet50_up2_conv_hmp(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='conv',
-                   last_global_pool='hmp', crop_dim=15,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-# t-conv - nih
-@register_model
-def resnet50_up0_conv_hmp_crop6(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='conv',
-                   last_global_pool='hmp', crop_dim=6,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_conv_hmp_crop9(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='conv',
-                   last_global_pool='hmp', crop_dim=9,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_conv_hmp_crop12(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='conv',
-                   last_global_pool='hmp', crop_dim=12,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_conv_hmp_crop17(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='conv',
-                   last_global_pool='hmp', crop_dim=17,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_conv_hmp_crop23(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='conv',
-                   last_global_pool='hmp', crop_dim=23,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-# org attention model cost too many parameters!
-# @register_model
-# def resnet50_up1_attn_hmp(pretrained=False, **kwargs):
-#     return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-#                    last_global_pool='hmp', crop_dim=8,
-#                    num_classes=kwargs.get('num_classes', 1000))
-#
-# @register_model
-# def resnet50_up2_attn_hmp(pretrained=False, **kwargs):
-#     return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-#                    last_global_pool='hmp', crop_dim=15,
-#                    num_classes=kwargs.get('num_classes', 1000))
-# @register_model
-# def resnet50_up2_attn_hmp_crop23(pretrained=False, **kwargs):
-#     return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-#                    last_global_pool='hmp', crop_dim=23,
-#                    num_classes=kwargs.get('num_classes', 1000))
-
-# gap - imagenet
-@register_model
-def resnet50_up0_attn_gap_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='gap', crop_dim=8, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_gap_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='gap', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_gap_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='gap', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-# hmp - imagenet
-@register_model
-def resnet50_up0_attn_hmp_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=4, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_hmp_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=8, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+def resnet50_ADNet_IN1K(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-# hmp - different dataset
-@register_model
-def resnet50_up0_attn_hmp_mlp2dw_group2_crop5(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=5, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
 
 @register_model
-def resnet50_up0_attn_hmp_mlp2dw_group2_crop6(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=6, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_hmp_mlp2dw_group2_crop8(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=8, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_hmp_mlp2dw_group2_crop9(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=9, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_hmp_mlp2dw_group2_crop12(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=12, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop3(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=3, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop5(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=5, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop7(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=7, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop9(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=9, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop11(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=11, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop13(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=13, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop15(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+def resnet50_ADNet_IN1K_NIH(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop17(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=17, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K_NIH.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
 
 @register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop19(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=19, mlp=2, groups=2, dw=True,
+def resnet50_ADNet_IN1K_MIMIC(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+                   last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-@register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop21(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=21, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K_MIMIC.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
 
 @register_model
-def resnet50_up2_attn_hmp_mlp2dw_group2_crop23(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='hmp', crop_dim=23, mlp=2, groups=2, dw=True,
+def resnet50_ADNet_IN1K_CheXpert(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+                   last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-# dft - imagenet
-@register_model
-def resnet50_up0_attn_dft_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=4, mlp=2, groups=2, dw=True, pool_channel=1024,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K_CheXpert.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
 
 @register_model
-def resnet50_up1_attn_dft_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=8, mlp=2, groups=2, dw=True, pool_channel=512,
+def resnet50_ADNet_ALL(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+                   last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-@register_model
-def resnet50_up2_attn_dft_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=15, mlp=2, groups=2, dw=True, pool_channel=384,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
 
-# dft - nih
-@register_model
-def resnet50_up0_attn_dft_mlp2dw_group2_crop5(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=5, mlp=2, groups=2, dw=True, pool_channel=1024,
-                   num_classes=kwargs.get('num_classes', 1000))
 
 @register_model
-def resnet50_up0_attn_dft_mlp2dw_group2_crop6(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=6, mlp=2, groups=2, dw=True, pool_channel=1024,
+def resnet50_ADNet_ALL_NIH(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+                   last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-@register_model
-def resnet50_up1_attn_dft_mlp2dw_group2_crop9(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=9, mlp=2, groups=2, dw=True, pool_channel=512,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_NIH.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
 
 @register_model
-def resnet50_up1_attn_dft_mlp2dw_group2_crop12(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=12, mlp=2, groups=2, dw=True, pool_channel=512,
+def resnet50_ADNet_ALL_MIMIC(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+                   last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-@register_model
-def resnet50_up2_attn_dft_mlp2dw_group2_crop17(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=17, mlp=2, groups=2, dw=True, pool_channel=384,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_MIMIC.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
+
 
 @register_model
-def resnet50_up2_attn_dft_mlp2dw_group2_crop23(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='dft', crop_dim=23, mlp=2, groups=2, dw=True, pool_channel=384,
+def resnet50_ADNet_ALL_CheXpert(pretrained=False, **kwargs):
+    model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
+                   last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
                    num_classes=kwargs.get('num_classes', 1000))
 
-# vgg - imagenet
-@register_model
-def resnet50_up0_attn_vgg_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=4.5, mlp=2, groups=2, dw=True, pool_channel=512,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_vgg_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=8, mlp=2, groups=2, dw=True, pool_channel=384,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_vgg_mlp2dw_group2(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=15, mlp=2, groups=2, dw=True, pool_channel=256,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-# vgg - nih
-@register_model
-def resnet50_up0_attn_vgg_mlp2dw_group2_crop5(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=5, mlp=2, groups=2, dw=True, pool_channel=512,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up0_attn_vgg_mlp2dw_group2_crop6(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=0, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=6.5, mlp=2, groups=2, dw=True, pool_channel=512,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_vgg_mlp2dw_group2_crop9(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=9, mlp=2, groups=2, dw=True, pool_channel=384,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up1_attn_vgg_mlp2dw_group2_crop12(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=1, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=12, mlp=2, groups=2, dw=True, pool_channel=384,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_vgg_mlp2dw_group2_crop17(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=17, mlp=2, groups=2, dw=True, pool_channel=256,
-                   num_classes=kwargs.get('num_classes', 1000))
-
-@register_model
-def resnet50_up2_attn_vgg_mlp2dw_group2_crop23(pretrained=False, **kwargs):
-    return ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
-                   last_global_pool='vgg', crop_dim=23, mlp=2, groups=2, dw=True, pool_channel=256,
-                   num_classes=kwargs.get('num_classes', 1000))
+    if pretrained:
+        checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_CheXpert.pth.tar'
+        state_dict = load_state_dict_from_url(checkpoint, progress=False)
+        state_dict = state_dict['state_dict'] if 'state_dict' in state_dict else state_dict
+        model.load_state_dict(state_dict)
+    return model
 
 
 if __name__ == '__main__':
-    func_list = [
-        # 'resnet50', 'resnet50_up0_attn_hmp_mlp2dw_group2_crop6',
-        # 'resnet50_up1_conv_hmp_crop12', 'resnet50_up1_attn_hmp_mlp2dw_group2_crop12',
-        # 'resnet50_up2_conv_hmp_crop23', 'resnet50_up2_attn_hmp_mlp2dw_group2_crop23',
-        # 'resnet50_up0_attn_gap_mlp2dw_group2',
-        # 'resnet50_up1_attn_gap_mlp2dw_group2',
-        # 'resnet50_up2_attn_gap_mlp2dw_group2',
-        'resnet50_up0_attn_vgg_mlp2dw_group2_crop6',
-        'resnet50_up1_attn_vgg_mlp2dw_group2_crop12',
-        'resnet50_up2_attn_vgg_mlp2dw_group2_crop23',
-        # 'resnet50_up0_attn_dft_mlp2dw_group2_crop6',
-        # 'resnet50_up1_attn_dft_mlp2dw_group2_crop12',
-        # 'resnet50_up2_attn_dft_mlp2dw_group2_crop23',
+    model_name_list = [
+        'resnet50_ADNet_ALL_CheXpert'
     ]
-    for func_name in func_list:
+    for model_name in model_name_list:
         x = torch.rand(2, 3, 352, 352)
-        model = create_model(func_name, num_classes=14)
-        print(func_name)
-        print(sum(param.numel() for param in model.parameters() if param.requires_grad))
-    # f = resnet50_up2_conv_hmp_crop23(num_classes=14)
-    # for level in [0, 1, 2]:
-    #     for pool in ['gap', 'vgg', 'dft', 'hmp']:
-    #         print(f"level: {level}, pool:{pool}")
-    #         exec(f'f = resnet50_up{level}_attn_{pool}_mlp2dw_group2(num_classes=1000)')
-    #         y = f(x)
-    #         print(y.shape)
-    #         print(sum(param.numel() for param in f.parameters() if param.requires_grad))
+        model = create_model(model_name, num_classes=14)
+        y = model(x)
+        print(y)

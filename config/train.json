@@ -21,83 +21,13 @@
       "swin_tiny_patch4_window7_224", "swin_small_patch4_window7_224", "swin_base_patch4_window7_224"
     ],
     "model_weight": {
-      "resnet50": "resnet50.pth",
-      "resnet101": "data/pretrained/resnet101.pth",
-      "resnet152": "data/pretrained/resnet152.pth",
-      "swin_tiny_patch4_window7_224": "data/pretrained/swin_tiny_patch4_window7_224.pth",
-      "swin_small_patch4_window7_224": "data/pretrained/swin_small_patch4_window7_224.pth",
-      "swin_base_patch4_window7_224": "data/pretrained/swin_base_patch4_window7_224.pth",
-      "tresnet_l": "tresnet_l.pth",
-      "tresnet_xl": "tresnet_xl.pth",
-      "pit_b_224": "/home/hankyul/.cache/torch/hub/checkpoints/pit_b_820.pth",
-      "crossvit_18_dagger": "crossvit_18_dagger_224.pth",
-      "cait_s24_224": "S24_224.pth",
-      "cait_s36_384": "S36_384.pth",
-      "resnet50_up2_attn_hmp": "pretrained/level2_attn_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_crop23": "pretrained/level2_attn_hmp2.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up0_attn_hmp_mlp2dw_group2_crop5": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up0_attn_hmp_mlp2dw_group2_crop6": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up1_attn_hmp_mlp2dw_group2_crop8": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up1_attn_hmp_mlp2dw_group2_crop9": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up1_attn_hmp_mlp2dw_group2_crop12": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop3": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop5": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop7": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop9": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop11": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop13": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop15": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop17": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop19": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop21": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop23": "pretrained/level2_attn_light_hmp.pth.tar",
-      "resnet50_up2_conv_dft": "pretrained/level2_conv_hmp.pth.tar",
-      "resnet50_up0_conv_hmp_crop6": "pretrained/level2_conv_hmp.pth.tar",
-      "resnet50_up1_conv_hmp_crop9": "pretrained/level2_conv_hmp.pth.tar",
-      "resnet50_up1_conv_hmp_crop12": "pretrained/level2_conv_hmp.pth.tar",
-      "resnet50_up2_conv_hmp_crop17": "pretrained/level2_conv_hmp.pth.tar",
-      "resnet50_up2_conv_hmp_crop23": "pretrained/level2_conv_hmp.pth.tar",
-      "resnet50_up0_attn_gap_mlp2dw_group2": "pretrained/level2_attn_light_gap.pth.tar",
-      "resnet50_up1_attn_gap_mlp2dw_group2": "pretrained/level2_attn_light_gap.pth.tar",
-      "resnet50_up2_attn_gap_mlp2dw_group2": "pretrained/level2_attn_light_gap.pth.tar",
-      "resnet50_up0_attn_vgg_mlp2dw_group2": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up1_attn_vgg_mlp2dw_group2": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up2_attn_vgg_mlp2dw_group2": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up0_attn_vgg_mlp2dw_group2_crop5": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up1_attn_vgg_mlp2dw_group2_crop9": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up2_attn_vgg_mlp2dw_group2_crop17": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up0_attn_vgg_mlp2dw_group2_crop6": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up1_attn_vgg_mlp2dw_group2_crop12": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up2_attn_vgg_mlp2dw_group2_crop23": "pretrained/level2_attn_light_vgg.pth.tar",
-      "resnet50_up0_attn_dft_mlp2dw_group2": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up1_attn_dft_mlp2dw_group2": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up2_attn_dft_mlp2dw_group2": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up0_attn_dft_mlp2dw_group2_crop5": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up1_attn_dft_mlp2dw_group2_crop9": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up2_attn_dft_mlp2dw_group2_crop17": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up0_attn_dft_mlp2dw_group2_crop6": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up1_attn_dft_mlp2dw_group2_crop12": "pretrained/level2_attn_light_dft.pth.tar",
-      "resnet50_up2_attn_dft_mlp2dw_group2_crop23": "pretrained/level2_attn_light_dft.pth.tar",
-      "convnext_tiny_up2_attn_hmp_crop15": "pretrained/convnext_tiny_ours.pth.tar",
-      "convnext_tiny_up2_attn_hmp_crop23": "pretrained/convnext_tiny_ours.pth.tar",
-      "convnext_tiny_up2_attn_hmp_crop15_aug": "pretrained/convnext_tiny_ours_aug.pth.tar",
-      "convnext_tiny_up2_attn_hmp_crop23_aug": "pretrained/convnext_tiny_ours_aug.pth.tar",
-      "resnet50": "log/all_v1_resnet50_v1/best_weight.pth",
-      "resnet50_up2_attn_hmp_mlp2dw_group2_crop15_all": "log/all_v1_resnet50_up2_attn_hmp_mlp2dw_group2_crop15_v0/best_weight.pth",
-      "convnext_tiny": "log/all_v1_convnext_tiny_v1/best_weight.pth",
-      "convnext_tiny_up2_attn_hmp_crop15_aug_all": "log/all_v1_convnext_tiny_up2_attn_hmp_crop15_aug_v3/best_weight.pth"
+      "resnet50_ADNet_IN1K": "pretrained/resnet50_ADNet_IN1K.pth.tar",
+      "resnet50_ADNet_ALL": "pretrained/resnet50_ADNet_ALL.pth.tar",
+      "convnext_tiny_ADNet_IN1K": "pretrained/convnext_tiny_ADNet_IN1K",
+      "convnext_tiny_ADNet_ALL": "pretrained/convnext_tiny_ADNet_ALL"
     },
     "settings": {
-      "chexpert_v12": {
-        "dataset_type": "chexpert", "pretrained": true,
-        "train_size": [224, 224], "test_size": [224, 224], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "lr": 1e-3, "min_lr": 1e-6, "random_affine": false, "remode": 0.2, "recount": 3,
-        "batch_size": 32, "epoch": 20, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce",
-        "save_weight": true, "drop_path_rate": 0.05, "wce": true
-      },
-      "chexpert_v13": {
+      "chexpert": {
         "dataset_type": "chexpert", "pretrained": true, "entity": "hankyul2",
         "train_size": [256, 256], "test_size": [256, 256], "center_crop_ptr": 0.95, "hflip": 0.5,
         "remode": 0.2, "recount": 3, "lr": 5e-5, "min_lr": 5e-6, "auto_aug": "rand-m9-mstd0.9",
@@ -105,47 +35,7 @@
         "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
         "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "valid_freq": 200
       },
-      "chexpert_v14": {
-        "dataset_type": "chexpert", "pretrained": true, "entity": "hankyul2",
-        "train_size": [320, 320], "test_size": [320, 320], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "remode": 0.2, "recount": 3, "lr": 1e-4, "min_lr": 1e-6,
-        "batch_size": 32, "epoch": 40, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
-        "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "valid_freq": 200
-      },
-      "chexpert_v15": {
-        "dataset_type": "chexpert", "pretrained": true, "entity": "hankyul2", "use_wandb": true,
-        "train_size": [256, 256], "test_size": [256, 256], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "remode": 0.2, "recount": 3, "lr": 5e-5, "min_lr": 5e-6, "auto_aug": "rand-m9-mstd0.9",
-        "batch_size": 32, "epoch": 20, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
-        "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "valid_freq": 200
-      },
-      "nihchest_v10": {
-        "dataset_type": "nihchest", "pretrained": true, "entity": "hankyul2",
-        "train_size": [352, 352], "test_size": [480, 480], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "remode": 0.2, "recount": 3, "lr": 1e-3, "min_lr": 1e-7,
-        "batch_size": 32, "epoch": 40, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
-        "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05
-      },
-      "nihchest_v11": {
-        "dataset_type": "nihchest", "pretrained": true, "entity": "hankyul2", "use_wandb": true,
-        "train_size": [352, 352], "test_size": [448, 448], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "remode": 0.2, "recount": 3, "lr": 1e-4, "min_lr": 1e-6, "auto_aug": "rand-m9-mstd0.5",
-        "batch_size": 30, "epoch": 30, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
-        "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "ema": true
-      },
-      "nihchest_v12": {
-        "dataset_type": "nihchest", "pretrained": true, "entity": "hankyul2", "use_wandb": true,
-        "train_size": [352, 352], "test_size": [448, 448], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "remode": 0.2, "recount": 3, "lr": 1e-4, "min_lr": 1e-6, "auto_aug": "rand-m9-mstd0.5",
-        "batch_size": 30, "epoch": 30, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
-        "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "ema": true, "aug_repeat": 3
-      },
-      "nihchest_v13": {
+      "nihchest": {
         "dataset_type": "nihchest", "pretrained": true, "entity": "hankyul2", "use_wandb": true,
         "train_size": [352, 352], "test_size": [448, 448], "center_crop_ptr": 0.95, "hflip": 0.5,
         "remode": 0.2, "recount": 3, "lr": 1e-4, "min_lr": 1e-6, "auto_aug": "rand-m9-mstd0.5",
@@ -153,15 +43,7 @@
         "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
         "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "ema": true, "ema_decay": 0.99995, "aug_repeat": 3
       },
-      "all_v1": {
-        "dataset_type": "all", "pretrained": true, "entity": "hankyul2", "use_wandb": true,
-        "train_size": [352, 352], "test_size": [416, 416], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "remode": 0.2, "recount": 3, "lr": 1e-4, "min_lr": 1e-6, "auto_aug": "rand-m9-mstd0.5",
-        "batch_size": 30, "epoch": 30, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
-        "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "ema": true
-      },
-      "all_v2": {
+      "all": {
         "dataset_type": "all", "pretrained": true, "entity": "hankyul2", "use_wandb": true,
         "train_size": [352, 352], "test_size": [416, 416], "center_crop_ptr": 0.95, "hflip": 0.5,
         "remode": 0.2, "recount": 3, "lr": 4e-4, "min_lr": 1e-6, "auto_aug": "rand-m9-mstd0.5",
@@ -169,15 +51,7 @@
         "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
         "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05, "ema": true
       },
-      "mimic_v1": {
-        "dataset_type": "mimic", "pretrained": true, "entity": "hankyul2",
-        "train_size": [256, 256], "test_size": [256, 256], "center_crop_ptr": 0.95, "hflip": 0.5,
-        "remode": 0.2, "recount": 3, "lr": 1e-4, "min_lr": 1e-6,
-        "batch_size": 32, "epoch": 40, "optimizer": "adamw", "weight_decay": 1e-4,
-        "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
-        "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05
-      },
-      "mimic_v2": {
+      "mimic": {
         "dataset_type": "mimic", "pretrained": true, "entity": "hankyul2", "use_wandb": true,
         "train_size": [256, 256], "test_size": [256, 256], "center_crop_ptr": 0.95, "hflip": 0.5,
         "remode": 0.2, "recount": 3, "lr": 1e-4, "min_lr": 1e-6, "auto_aug":"rand-m9-mstd0.5", "ema": true,
