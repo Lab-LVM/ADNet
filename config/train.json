@@ -59,4 +59,5 @@
         "scheduler": "cosine", "warmup_epoch": 0, "warmup_lr": 1e-6, "criterion": "bce", "patient_epoch": 3,
         "save_weight": true, "print_freq": 100, "drop_path_rate": 0.05
       }
+  }
 }
