@@ -1,0 +1,8 @@
+session_name: default
+windows:
+  - window_name: cxp-resnet
+    layout: even-vertical
+    panes:
+      # valid
+      - shell_command:
+          - python valid.py -s chexpert_v1 -c 0 -b 128 -m resnet50

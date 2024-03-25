@@ -1,0 +1,11 @@
+session_name: default
+windows:
+  - window_name: nih
+    layout: even-vertical
+    panes:
+      - shell_command:
+        - tor 4 knn.py -es nihv1_nih -ws nihv1_nih --eval-protocol knn -c 4,5,6,7 -b 32
+        - tor 4 knn.py -es nihv1_cxp -ws nihv1_cxp --eval-protocol knn -c 4,5,6,7 -b 32
+        - tor 4 knn.py -es nihv1_cxr -ws nihv1_cxr --eval-protocol knn -c 4,5,6,7 -b 32
+        - tor 4 knn.py -es nihv1_covid -ws nihv1_covid --eval-protocol knn -c 4,5,6,7 -b 32
+        - tor 4 knn.py -es nihv1_cxrd -ws nihv1_cxrd --eval-protocol knn -c 4,5,6,7 -b 32

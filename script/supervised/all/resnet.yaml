@@ -1,0 +1,13 @@
+session_name: default
+windows:
+  - window_name: nih-convnext
+    layout: even-vertical
+    panes:
+      # pre-training
+        - python train.py -s all_v1 -c 2 --use-wandb -m resnet50
+        - python train.py -s all_v1 -c 3 --use-wandb -m resnet50_up2_attn_hmp_mlp2dw_group2_crop15
+      # fine-tuning
+        - python3 train.py -s nihchest_v13 -c 0 --use-wandb -m resnet50
+        - python3 train.py -s nihchest_v13 -c 1 --use-wandb -m resnet50_up2_attn_hmp_mlp2dw_group2_crop15_all
+        - python3 train.py -s mimic_v2 --train-size 352 352 --test-size 416 416 -c 2 --use-wandb -m resnet50
+        - python3 train.py -s mimic_v2 --train-size 352 352 --test-size 416 416 -c 2 --use-wandb -m resnet50_up2_attn_hmp_mlp2dw_group2_crop15_all

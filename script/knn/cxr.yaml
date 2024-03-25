@@ -1,0 +1,16 @@
+session_name: default
+windows:
+  - window_name: cxr
+    layout: even-vertical
+    panes:
+      - shell_command:
+        - tor 4 knn.py -es cxrv1_nih -ws cxrv1_nih --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv1_cxp -ws cxrv1_cxp --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv1_cxr -ws cxrv1_cxr --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv1_covid -ws cxrv1_covid --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv1_cxrd -ws cxrv1_cxrd --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv2_nih -ws cxrv2_nih --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv2_cxp -ws cxrv2_cxp --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv2_cxr -ws cxrv2_cxr --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv2_covid -ws cxrv2_covid --eval-protocol knn -c 0,1,2,3 -b 32
+        - tor 4 knn.py -es cxrv2_cxrd -ws cxrv2_cxrd --eval-protocol knn -c 0,1,2,3 -b 32

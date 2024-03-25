@@ -1,0 +1,23 @@
+session_name: default
+windows:
+  - window_name: mimic-convnext
+    layout: even-vertical
+    panes:
+      # train
+      - shell_command:
+          - python3 train.py -s mimic_v2 -c 3 --use-wandb --train-size 320 320 --test-size 320 320
+            -m maxvit_tiny_tf_320
+      - shell_command:
+          - python3 train.py -s mimic_v2 --train-size 448 448 --test-size 448 448 -c 4 --use-wandb
+            -m maxvit_tiny_tf_448
+#      - shell_command:
+#          - python3 train.py -s mimic_v2 --train-size 320 320 --test-size 320 320 -c 0 --use-wandb
+#            -m maxvit_tiny_tf_320_up2_attn_hmp_crop15 maxvit_tiny_tf_320_up2_attn_hmp_crop23
+#      - shell_command:
+#          - python3 train.py -s mimic_v2 --train-size 448 448 --test-size 448 448 -c 0 --use-wandb
+#            -m maxvit_tiny_tf_448_up2_attn_hmp_crop15 maxvit_tiny_tf_448_up2_attn_hmp_crop23
+      # valid
+#      - shell_command:
+#          - python valid.py -s mimic_v1 -c 0 -b 128 --test-size 320 320 -m maxvit_tiny_tf_320
+#      - shell_command:
+#          - python valid.py -s mimic_v1 -c 1 -b 128 --test-size 320 320 -m maxvit_tiny_tf_320_up2_attn_hmp_crop23

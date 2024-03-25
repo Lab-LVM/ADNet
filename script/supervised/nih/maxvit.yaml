@@ -1,0 +1,16 @@
+session_name: default
+windows:
+  - window_name: nih-convnext
+    layout: even-vertical
+    panes:
+      # train
+      - shell_command:
+          - python3 train.py -s nihchest_v13 -c 0 --use-wandb --train-size 448 448 -b 28
+            -m maxvit_tiny_tf_448
+#      - shell_command:
+#          - python3 train.py -s nihchest_v13 -c 1 --use-wandb --train-size 448 448 -b 28
+#            -m maxvit_tiny_tf_448_up2_attn_hmp_crop15
+      # valid
+#      - shell_command:
+#          - python valid.py -s nihchest_v1 -c 0 -b 128 -m maxvit_tiny_tf_448
+#          - python valid.py -s nihchest_v1 -c 0 -b 128 -m maxvit_tiny_tf_448_up2_attn_hmp_crop15

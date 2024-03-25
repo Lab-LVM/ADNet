@@ -1,0 +1,176 @@
+{
+  "data_dir": {
+    "chexpert": "data/classification/chest/cheXpert/CheXpert-v1.0-small/",
+    "nihchest": "data/classification/chest/nih/",
+    "mimic": "data/classification/chest/mimic-cxr/",
+    "ddsm": "data/classification/breast/DDSM",
+  },
+  "chexpert_v1": {
+    "settings": {"dataset_type": "chexpert", "test_size": [224, 224], "center_crop_ptr": 0.875},
+    "model_weight": {
+      "resnet50": "log/chexpert_v1_resnet50_v7/best_weight.pth",
+      "resnet101": "log/chexpert_v1_resnet101_v0/best_weight.pth",
+      "resnet152": "log/chexpert_v1_resnet152_v0/best_weight.pth",
+      "convnext_tiny": "log/chexpert_v1_convnext_tiny_v0/best_weight.pth",
+      "convnext_small": "log/chexpert_v1_convnext_small_v0/best_weight.pth",
+      "convnext_base": "log/chexpert_v1_convnext_base_v0/best_weight.pth",
+      "densenet121": "log/chexpert_v1_densenet121_v0/best_weight.pth",
+      "densenet161": "log/chexpert_v1_densenet161_v0/best_weight.pth",
+      "densenet169": "log/chexpert_v1_densenet169_v0/best_weight.pth",
+      "densenet201": "log/chexpert_v1_densenet201_v0/best_weight.pth",
+      "deit_small_patch16_224": "log/chexpert_v1_deit_samll_patch16_224_v0/best_weight.pth",
+      "deit_base_patch16_224": "log/chexpert_v1_deit_base_patch16_224_v0/best_weight.pth",
+      "swin_tiny_patch4_window7_224": "log/chexpert_v1_swin_tiny_patch4_window7_224_v0/best_weight.pth",
+      "swin_small_patch4_window7_224": "log/chexpert_v1_swin_small_patch4_window7_224_v0/best_weight.pth"
+    }
+  },
+  "nihchest_v1": {
+    "settings": {"dataset_type": "nihchest", "test_size": [448, 448], "center_crop_ptr": 0.95},
+    "model_weight": {
+      "densenet169": [
+        "densenet169", "log/nihchest_v3_densenet169_False_False_False_False_v5/best_weight.pth"
+      ],
+      "densenet169_drop_rate_0.5": [
+        "densenet169", "log/nihchest_v3_densenet169_dft_pool_False_drop_rate_0.05_crop_5_target_mag_mlp_layer_0_dropout_0.0_v0/best_weight.pth"
+      ],
+      "densenet169_opla": [
+        "densenet169", "log/nihchest_v4_densenet169_dft_pool_False_els_False_drop_rate_0.1_crop_5_target_mag_weight_pool_linear_mlp_layer_0_dropout_0.0_dropblock_0.0_smoothing_0.0_v1/best_weight.pth"
+      ],
+      "resnet50": [
+        "resnet50", "best_weight/resnet50_nih.pth"
+      ],
+      "resnet50_up2_attn_hmp_crop23": [
+        "resnet50_up2_attn_hmp_crop23", "best_model/resnet50_up2_attn_hmp_crop23_nih.pth"
+      ],
+      "resnet50_up2_attn_hmp_crop23_ema": [
+        "resnet50_up2_attn_hmp_crop23", "best_weight/resnet50_up2_attn_hmp_crop23_ema.pth"
+      ],
+      "resnet50_up2_attn_hmp_crop23_ema2": [
+        "resnet50_up2_attn_hmp_crop23", "best_weight/resnet50_up2_attn_hmp_crop23_ema2.pth"
+      ],
+      "resnet50_up2_attn_hmp_crop23_distill_ema": [
+        "resnet50_up2_attn_hmp_crop23", "best_weight/resnet50_up2_attn_hmp_crop23_distill_ema.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_ema_pseudo_label_40e": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2", "best_weight/resnet50_up2_attn_hmp_mlp2dw_group2_ema_pseudo_label_40e_nih.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_crop23_ema_pseudo_label_30e": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop23", "log/nihchest_v10_resnet50_up2_attn_hmp_mlp2dw_group2_crop23_v8/best_weight.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_crop23_ema_30e": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop23", "log/nihchest_v10_resnet50_up2_attn_hmp_mlp2dw_group2_crop23_v1/best_weight.pth"
+      ],
+      "resnet50_256": [
+        "resnet50", "log/nihchest_v10_resnet50_v5/best_weight.pth"
+      ],
+      "aunet_256": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop17", "log/nihchest_v10_resnet50_up2_attn_hmp_mlp2dw_group2_crop17_v0/best_weight.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_crop21_ema_30e": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop21", "log/nihchest_v10_resnet50_up2_attn_hmp_mlp2dw_group2_crop21_v1/best_weight.pth"
+      ],
+      "convnext_tiny_up2_attn_hmp_crop15_aug": [
+        "convnext_tiny_up2_attn_hmp_crop15_aug", "log/nihchest_v11_convnext_tiny_up2_attn_hmp_crop15_aug_v2/best_weight.pth"
+      ],
+      "convnext_tiny": [
+        "convnext_tiny", "log/nihchest_v11_convnext_tiny_v4/best_weight.pth"
+      ],
+      "maxvit_tiny_tf_448": [
+        "maxvit_tiny_tf_448", "log/nihchest_v13_maxvit_tiny_tf_448_v3/best_weight.pth"
+      ]
+    }
+  },
+  "mimic_v1": {
+    "settings": {
+      "dataset_type": "mimic", "test_size": [256, 256], "center_crop_ptr": 0.95
+    },
+    "model_weight": {
+      "resnet50": [
+        "resnet50", "best_weight/resnet50_mimic.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_ema_30e": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2", "best_weight/resnet50_up2_attn_hmp_mlp2dw_group2_ema_mimic.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_crop17_ema_30e": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop17", "log/mimic_v1_resnet50_up2_attn_hmp_mlp2dw_group2_crop17_v0/best_weight.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_crop9_ema_30e": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop9", "best_weight/resnet50_up2_attn_hmp_mlp2dw_group2_crop9_mimic.pth"
+      ],
+      "convnext_tiny": [
+        "convnext_tiny", "log/mimic_v2_convnext_tiny_v1/best_weight.pth"
+      ],
+      "convnext_tiny_up2_attn_hmp_crop15_aug": [
+        "convnext_tiny_up2_attn_hmp_crop15_aug", "log/mimic_v2_convnext_tiny_up2_attn_hmp_crop15_aug_v1/best_weight.pth"
+      ],
+      "maxvit_tiny_tf_320": [
+        "maxvit_tiny_tf_320", "log/mimic_v2_maxvit_tiny_tf_320_v0/best_weight.pth"
+      ]
+    }
+  },
+  "chexpert_v1": {
+    "settings": {
+      "dataset_type": "chexpert",
+      "test_size": [
+        256,
+        256
+      ],
+      "center_crop_ptr": 0.95
+    },
+    "model_weight": {
+      "resnet50": [
+        "resnet50",
+        "best_weight/resnet50_cxp.pth.tar"
+      ],
+      "resnet50_up2_attn_hmp": [
+        "resnet50_up2_attn_hmp",
+        "best_weight/resnet50_up2_attn_hmp_cxp_224.pth"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_crop13": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop13",
+        "log/chexpert_v13_resnet50_up2_attn_hmp_mlp2dw_group2_crop13_v6/best_weight.pth"
+      ],
+      "convnext_tiny": [
+        "convnext_tiny",
+        "log/chexpert_v13_convnext_tiny_v0/best_weight.pth"
+      ]
+    }
+  },
+  "chexpert_v2": {
+    "settings": {
+      "dataset_type": "chexpert",
+      "test_size": [
+        256,
+        256
+      ],
+      "center_crop_ptr": 0.95
+    },
+    "model_weight": {
+      "resnet50_up2_attn_gap_mlp2dw_group2": [
+        "resnet50_up2_attn_gap_mlp2dw_group2",
+        "chexpert_pretrained/gap.pth.tar"
+      ],
+      "resnet50_up2_attn_vgg_mlp2dw_group2_crop17": [
+        "resnet50_up2_attn_vgg_mlp2dw_group2_crop17",
+        "chexpert_pretrained/vgg.pth.tar"
+      ],
+      "resnet50_up2_attn_dft_mlp2dw_group2_crop17": [
+        "resnet50_up2_attn_dft_mlp2dw_group2_crop17",
+        "chexpert_pretrained/dft.pth.tar"
+      ],
+      "resnet50_up2_attn_hmp_mlp2dw_group2_crop13": [
+        "resnet50_up2_attn_hmp_mlp2dw_group2_crop13",
+        "chexpert_pretrained/hmp.pth.tar"
+      ]
+    }
+  },
+  "nihchest_v2": {
+    "settings": {
+      "dataset_type": "nihchest", "test_size": [480, 480], "center_crop_ptr": 0.95, "train_size": [360, 360],
+      "dft_pool": true, "crop": 5, "target": "mag", "mlp_layer": 0, "dropout": 0.0, "dropblock": 0.0
+    },
+    "model_weight": {
+      "densenet169": "log/nihchest_v3_densenet169dft_pool_True_crop_5_target_mag_mlp_layer_0_v3/best_weight.pth"
+    }
+  }
+}
