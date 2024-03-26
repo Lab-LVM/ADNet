@@ -21,21 +21,21 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
    
    ```python
    !wget https://raw.githubusercontent.com/Lab-LVM/ADNet/main/mecla/model/convnext.py
-   !wget https://raw.githubusercontent.com/Lab-LVM/ADNet/main/misc/sample.jpg
+   !wget https://raw.githubusercontent.com/Lab-LVM/ADNet/main/misc/sample.png
    import convnext
    from timm import create_model
    from PIL import Image
    from torchvision.transforms import Compose, Resize, CenterCrop, Normalize, ToTensor
    
-   img = Image('sample.jpg')
+   img = Image('sample.png')
    x = Compose([
-       Resize(438, 3), CenterCrop(416), ToTensor(), 
+       Resize(472, 3), CenterCrop(448), ToTensor(), 
        Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
    ])(img)
-   model = create_model('resnet50_ADNet_ALL_NIH', pretrained=True) 
-   y = model(x.unsqueeze(0))
+   model = create_model('convnext_tiny_ADNet_ALL_NIH', pretrained=True) 
+   y = model(x.unsqueeze(0)).argmax
    print(y)
-   # output: (...)
+   # output: 1 (cardiomegaly)
    ```
    
    
@@ -95,10 +95,10 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
 
    - Download a pre-trained checkpoint and modify the checkpoint path of `model_weight` in [config/train.json](config/train.json). You can choose a checkpoint depending on pre-trained dataset types: ImageNet or ALL (NIH+MIMIC+CheXpert).
    
-     | No   | Backbone   | ImageNet | NIH+MIMIC+CheXpert |
-     | ---- | ---------- | -------- | ------------------ |
-     | 1    | ResNet50   | [ckpt]() | [ckpt]()           |
-     | 2    | ConvNeXt-T | [ckpt]() | [ckpt]()           |
+     | No   | Backbone   | IN1K                                                         | ALL                                                          |
+     | ---- | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+     | 1    | ResNet50   | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K.pth.tar) | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL.txt) |
+     | 2    | ConvNeXt-T | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K.pth.tar) | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL.txt) |
    
    - See more training scripts in [script/supervised/](script/supervised).
    
@@ -119,18 +119,17 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
 
 We provide experiment results with pre-trained checkpoints.
 
-| Pre-train Data | Fine-tune Data | Backbone   | Image | AUROC | F1    | Recall | Download |
-| -------------- | -------------- | ---------- | ----- | ----- | ----- | ------ | -------- |
-| IN1K           | NIH            | ResNet50   | 448   | 83.49 | 15.70 | 10.77  | [ckpt]() |
-| IN1K           | NIH            | ConvNeXt-T | 448   | 83.80 | 24.23 | 18.46  | [ckpt]() |
-| IN1K           | MIMIC          | ResNet50   | 256   | 84.48 | 31.85 | 26.84  | [ckpt]() |
-| IN1K           | MIMIC          | ConvNeXt-T | 416   | 85.31 | 31.37 | 26.97  | [ckpt]() |
-| IN1K           | CheXpert       | ResNet50   | 256   | 90.60 | -     | -      | [ckpt]() |
-| ALL            | NIH            | ResNet50   | 416   |       |       |        | [ckpt]() |
-| ALL            | NIH            | ConvNeXt-T | 416   |       |       |        | [ckpt]() |
-| ALL            | MIMIC          | ResNet50   | 416   |       |       |        | [ckpt]() |
-| ALL            | MIMIC          | ConvNeXt-T | 416   |       |       |        | [ckpt]() |
-| ALL            | CheXpert       | ResNet50   | 416   |       |       |        | [ckpt]() |
+| Pre-train Data | Fine-tune Data | Backbone   | Image | AUROC | Download                                                     |
+| -------------- | -------------- | ---------- | ----- | ----- | ------------------------------------------------------------ |
+| IN1K           | NIH            | ResNet50   | 448   | 83.5  |                                                              |
+| IN1K           | NIH            | ConvNeXt-T | 448   | 83.8  | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K_NIH.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K_NIH.txt) |
+| IN1K           | MIMIC          | ResNet50   | 256   | 84.5  |                                                              |
+| IN1K           | MIMIC          | ConvNeXt-T | 416   | 85.3  | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K_MIMIC.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_IN1K_MIMIC.txt) |
+| IN1K           | CheXpert       | ResNet50   | 256   | 90.6  |                                                              |
+| ALL            | NIH            | ResNet50   | 448   | 84.1  | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_NIH.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_NIH.txt) |
+| ALL            | NIH            | ConvNeXt-T | 448   | 84.4  | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL_MIMIC.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL_MIMIC.txt) |
+| ALL            | MIMIC          | ResNet50   | 448   | 85.2  | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_MIMIC.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_MIMIC.txt) |
+| ALL            | MIMIC          | ConvNeXt-T | 448   | 85.6  | [ckpt](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL_MIMIC.pth.tar)  [log](https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/convnext_tiny_ADNet_ALL_MIMIC.txt) |
 
 *Note*
 
