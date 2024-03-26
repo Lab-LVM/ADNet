@@ -635,7 +635,7 @@ def resnet50_ADNet_IN1K(pretrained=False, **kwargs):
 def resnet50_ADNet_IN1K_NIH(pretrained=False, **kwargs):
     model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+                   num_classes=kwargs.get('num_classes', 14))
 
     if pretrained:
         checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K_NIH.pth.tar'
@@ -648,7 +648,7 @@ def resnet50_ADNet_IN1K_NIH(pretrained=False, **kwargs):
 def resnet50_ADNet_IN1K_MIMIC(pretrained=False, **kwargs):
     model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+                   num_classes=kwargs.get('num_classes', 14))
 
     if pretrained:
         checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K_MIMIC.pth.tar'
@@ -662,7 +662,7 @@ def resnet50_ADNet_IN1K_MIMIC(pretrained=False, **kwargs):
 def resnet50_ADNet_IN1K_CheXpert(pretrained=False, **kwargs):
     model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+                   num_classes=kwargs.get('num_classes', 5))
 
     if pretrained:
         checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_IN1K_CheXpert.pth.tar'
@@ -676,7 +676,7 @@ def resnet50_ADNet_IN1K_CheXpert(pretrained=False, **kwargs):
 def resnet50_ADNet_ALL(pretrained=False, **kwargs):
     model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+                   num_classes=kwargs.get('num_classes', 21))
 
     if pretrained:
         checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL.pth.tar'
@@ -690,7 +690,7 @@ def resnet50_ADNet_ALL(pretrained=False, **kwargs):
 def resnet50_ADNet_ALL_NIH(pretrained=False, **kwargs):
     model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+                   num_classes=kwargs.get('num_classes', 14))
 
     if pretrained:
         checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_NIH.pth.tar'
@@ -704,7 +704,7 @@ def resnet50_ADNet_ALL_NIH(pretrained=False, **kwargs):
 def resnet50_ADNet_ALL_MIMIC(pretrained=False, **kwargs):
     model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+                   num_classes=kwargs.get('num_classes', 14))
 
     if pretrained:
         checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_MIMIC.pth.tar'
@@ -718,7 +718,7 @@ def resnet50_ADNet_ALL_MIMIC(pretrained=False, **kwargs):
 def resnet50_ADNet_ALL_CheXpert(pretrained=False, **kwargs):
     model = ResUNet(block=Bottleneck, layers=[3, 4, 6, 3], up_level=2, up_layer_type='attn',
                    last_global_pool='hmp', crop_dim=15, mlp=2, groups=2, dw=True,
-                   num_classes=kwargs.get('num_classes', 1000))
+                   num_classes=kwargs.get('num_classes', 5))
 
     if pretrained:
         checkpoint = 'https://github.com/Lab-LVM/ADNet/releases/download/v0.0.1/resnet50_ADNet_ALL_CheXpert.pth.tar'

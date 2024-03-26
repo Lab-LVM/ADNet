@@ -738,39 +738,6 @@ model_urls = {
     "convnext_xlarge_22k": "https://dl.fbaipublicfiles.com/convnext/convnext_xlarge_22k_224.pth",
 }
 
-
-# @register_model
-# def convnext_tiny(pretrained=False, in_22k=False, **kwargs):
-#     kwargs.pop('pretrained_cfg', None)
-#     kwargs.pop('pretrained_cfg_overlay', None)
-#     model = ConvNeXt(
-#         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-#         num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
-#     )
-#     if pretrained:
-#         url = model_urls['convnext_tiny_22k'] if in_22k else model_urls['convnext_tiny_1k']
-#         checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
-#         model.load_state_dict(checkpoint["model"])
-#     return model
-#
-
-# imagenet
-# @register_model
-# def convnext_tiny(pretrained=False, in_22k=False, **kwargs):
-#     kwargs.pop('pretrained_cfg', None)
-#     kwargs.pop('pretrained_cfg_overlay', None)
-#     model = ConvNeXt(
-#         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-#         num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
-#     )
-#     if pretrained:
-#         url = model_urls['convnext_tiny_22k'] if in_22k else model_urls['convnext_tiny_1k']
-#         checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
-#         model.load_state_dict(checkpoint["model"])
-#     return model
-
-
-
 @register_model
 def convnext_tiny_ADNet_IN1K(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg', None)
@@ -795,7 +762,7 @@ def convnext_tiny_ADNet_IN1K_NIH(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg_overlay', None)
     model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        num_classes=kwargs.get('num_classes', 14), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
@@ -813,7 +780,7 @@ def convnext_tiny_ADNet_IN1K_MIMIC(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg_overlay', None)
     model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        num_classes=kwargs.get('num_classes', 14), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
@@ -831,7 +798,7 @@ def convnext_tiny_ADNet_IN1K_CheXpert(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg_overlay', None)
     model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        num_classes=kwargs.get('num_classes', 5), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
@@ -849,7 +816,7 @@ def convnext_tiny_ADNet_ALL(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg_overlay', None)
     model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        num_classes=kwargs.get('num_classes', 21), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
@@ -867,7 +834,7 @@ def convnext_tiny_ADNet_ALL_NIH(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg_overlay', None)
     model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        num_classes=kwargs.get('num_classes', 14), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
@@ -885,7 +852,7 @@ def convnext_tiny_ADNet_ALL_MIMIC(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg_overlay', None)
     model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        num_classes=kwargs.get('num_classes', 14), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
@@ -903,7 +870,7 @@ def convnext_tiny_ADNet_ALL_CheXpert(pretrained=False, in_22k=False, **kwargs):
     kwargs.pop('pretrained_cfg_overlay', None)
     model = ConvNeXt(
         depths=[3, 3, 9, 3], dims=[96, 192, 384, 768],
-        num_classes=kwargs.get('num_classes', 1000), drop_path_rate=kwargs.get('drop_path_rate', 0),
+        num_classes=kwargs.get('num_classes', 5), drop_path_rate=kwargs.get('drop_path_rate', 0),
         up_level=2, up_layer_type='attn', last_global_pool='hmp', crop_dim=15,
         mlp=4, groups=1, dw=True,
     )
