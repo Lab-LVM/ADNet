@@ -20,22 +20,23 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
    - Dataset Name: `IN1K`, `IN1K_NIH`, `IN1K_MIMIC`, `IN1K_CheXpert`, `ALL`, `ALL_NIH`, `ALL_MIMIC`, `ALL_CheXpert`.
    
    ```python
-   !wget https://raw.githubusercontent.com/Lab-LVM/ADNet/main/mecla/model/convnext.py
-   !wget https://raw.githubusercontent.com/Lab-LVM/ADNet/main/misc/sample.png
+   !wget -nc https://raw.githubusercontent.com/Lab-LVM/ADNet/main/mecla/model/convnext.py
+   !wget -nc https://raw.githubusercontent.com/Lab-LVM/ADNet/main/misc/sample.png
    import convnext
    from timm import create_model
    from PIL import Image
-   from torchvision.transforms import Compose, Resize, CenterCrop, Normalize, ToTensor
+   from torchvision.transforms import Compose, Resize, CenterCrop, Normalize, ToTensor, Grayscale
    
-   img = Image('sample.png')
+   img = Image.open('sample.png')
    x = Compose([
-       Resize(472, 3), CenterCrop(448), ToTensor(), 
+       Grayscale(3), Resize(472, 3), CenterCrop(448), ToTensor(), 
        Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
    ])(img)
-   model = create_model('convnext_tiny_ADNet_ALL_NIH', pretrained=True) 
-   y = model(x.unsqueeze(0)).argmax
+   model = create_model('convnext_tiny_ADNet_ALL_NIH', num_classes=14, pretrained=True)
+   model.eval()
+   y = model(x.unsqueeze(0)).argmax()
    print(y)
-   # output: 1 (cardiomegaly)
+   # output: tensor(1) (cardiomegaly)
    ```
    
    
