@@ -4,14 +4,6 @@
         "nihchest": "data/classification/chest/nih/",
         "mimic": "data/classification/chest/mimic-cxr/",
         "all": "data/classification/chest/all/",
-        "ddsm": "data/classification/breast/DDSM",
-        "vindr":"data/classification/breast/VinDr",
-        "isic2018": "data/classification/skin/ISIC-2018",
-        "isic2019": "data/classification/skin/ISIC-2019",
-        "isic2020": "data/classification/skin/ISIC-2020",
-        "eyepacs": "data/classification/eye/EyePACS",
-        "messidor2": "data/classification/eye/MESSIDOR2",
-        "pcam": "data/classification/lymph/PatchCamelyon"
     },
     "model_list": [
       "resnet50", "resnet101", "resnet152",

@@ -6,13 +6,6 @@
     "cxrd": "data/classification/chest/CXRD",
     "covid": "data/classification/chest/COVID-RD",
     "polcovid": "data/classification/chest/polcovid",
-    "ddsm": "data/classification/breast/DDSM",
-    "vindr":"data/classification/breast/VinDr",
-    "isic2018": "data/classification/skin/ISIC-2018",
-    "isic2019": "data/classification/skin/ISIC-2019",
-    "eyepacs": "data/classification/eye/EyePACS",
-    "messidor2": "data/classification/eye/MESSIDOR2",
-    "pcam": "data/classification/lymph/PatchCamelyon"
   },
   "checkpoint": {
     "basic": {
