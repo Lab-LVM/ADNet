@@ -65,7 +65,7 @@ This repository contains PyTorch-based implementation for "Attentional Decoder N
    *Tip.*
 
    - We resize images to 384x384 resolution using [misc/resize_chexpert.py](misc/resize_chexpert.py).
-   - We split MIMIC-CXR using [CheXclusion](https://github.com/LalehSeyyed/CheXclusion) protocols. You can download the test patient ID lists from [here](https://github.com/LalehSeyyed/CheXclusion/blob/main/MIMIC/testSet_SubjID.csv).
+   - We split MIMIC-CXR using [CheXclusion](https://github.com/LalehSeyyed/CheXclusion) protocols. You can download the test patient ID lists from [here](https://github.com/LalehSeyyed/CheXclusion/blob/main/MIMIC/testSet_SubjID.csv). Specifically, we upload our dataset preparation guideline for mimix-cxr to [here](https://github.com/Lab-LVM/ADNet/blob/main/misc/mimic-cxr.md).
 
    ```bash
    # 1. CheXpert: https://stanfordmlgroup.github.io/competitions/chexpert/
