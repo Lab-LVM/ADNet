@@ -65,7 +65,7 @@ We assume images are under `files` directory of your mimic-cxr dataset folder li
     ```
     
 3. Make image filename list for train and test split (`train_x.json`, `test_x.json`). Whole images under `img_384` are split 8:2 ratio, ensuring no patients overlap occurs.
-We use patient id list from [CheXclusion](https://github.com/LalehSeyyed/CheXclusion/blob/main/MIMIC/testSet_SubjID.csv).
+We use patient id list from [CheXclusion](https://github.com/LalehSeyyed/CheXclusion/blob/main/MIMIC/testSet_SubjID.csv). We upload [preprocessing code](misc/mimic_eda.ipynb) for generating `train_x.json`, `test_x.json`, `train_y.json`, and `test_y.json` files.
 
     ```json
     [
